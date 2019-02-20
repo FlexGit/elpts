@@ -13,8 +13,8 @@ return [
 	|
 	*/
 	
-	'name' => env('APP_NAME', 'Laravel'),
-	'vendor' => env('APP_VENDOR', 'Laravel'),
+	'name' => env('APP_NAME', 'Ведение оферт'),
+	'vendor' => env('APP_VENDOR', 'Системы электронных паспортов'),
 	
 	/*
 	|--------------------------------------------------------------------------
