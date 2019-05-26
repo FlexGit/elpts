@@ -53,7 +53,7 @@ class UsersController extends Controller {
 	public function store(Request $request) {
 		// Request Validation
 		$this->validate($request, [
-			'name' => 'required|max:255|unique:users',
+			'name' => 'required|max:255',
 			'snils' => 'required|is_snils',
 			'ogrn' => 'required|integer|is_ogrn',
 			'snils_ogrn' => 'are_snils_ogrn_unique',
@@ -64,7 +64,9 @@ class UsersController extends Controller {
 		$user->name = $request->name;
 		$user->snils = $request->snils;
 		$user->ogrn = $request->ogrn;
+		$user->admin = $request->admin;
 		$user->enable = $request->enable;
+		$user->auth_at = null;
 		$user->save();
 		
 		return redirect('/users?page=' . $request->page)
