@@ -37,6 +37,9 @@ Route::post('/settings', 'SettingsController@store')->name('settings.store')->mi
 Route::get('/settings/{id}', 'SettingsController@edit')->name('settings.edit')->middleware('checkUser', 'checkAdmin');
 Route::put('/settings/{id}', 'SettingsController@update')->name('settings.update')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 
+Route::get('/email-registry', 'EmailRegistryController@index')->name('email_registry.index')->middleware('checkUser', 'checkAdmin');
+Route::post('/email-registry/import', 'EmailRegistryController@import')->name('emailRegistryImport');
+
 Route::fallback(function () {
     abort(404);
 });

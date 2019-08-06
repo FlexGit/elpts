@@ -70,7 +70,8 @@ Breadcrumbs::for('users.edit', function ($trail, $user) {
 });
 
 // Templates
-Breadcrumbs::for('templates.index', function ($trail, $doctype) {    $trail->parent('main.index');
+Breadcrumbs::for('templates.index', function ($trail, $doctype) {
+    $trail->parent('main.index');
     $trail->push('Шаблоны "'.$doctype->name.'"', route('templates.index', $doctype));
 });
 
@@ -99,4 +100,10 @@ Breadcrumbs::for('settings.index', function ($trail) {
 Breadcrumbs::for('settings.edit', function ($trail, $setting) {
     $trail->parent('settings.index');
     $trail->push($setting->descr, route('settings.edit', $setting));
+});
+
+// E-mail Registry
+Breadcrumbs::for('email_registry.index', function ($trail) {
+	$trail->parent('main.index');
+	$trail->push('Реестр электронных адресов', route('email_registry.index'));
 });

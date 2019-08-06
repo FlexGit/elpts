@@ -25,6 +25,7 @@
 				</li>
 				<li><a href="/log" class="@if (Request::segment(1) == 'log') active @endif"><i class="lnr lnr-layers"></i> <span>Лог доступа</span></a></li>
 				<li><a href="/settings" class="@if (Request::segment(1) == 'settings') active @endif"><i class="lnr lnr-cog"></i> <span>Настройки</span></a></li>
+				<li><a href="/email-registry" class="@if (Request::segment(1) == 'email-registry') active @endif"><i class="lnr lnr-list"></i> <span>Реестр E-mail адресов</span></a></li>
 			</ul>
 		</nav>
 	</div>
