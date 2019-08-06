@@ -245,8 +245,8 @@ $(document).ready(function() {
                 	' %ORG_NAME% ',
                     ' %OGRN% ',
                     ' %INN% ',
-                    ' %SNILS% '/*,
-                	' %BASE_NUMBER% '*/
+                    ' %SNILS% ',
+                	' %DATE% '
                 ],
                 callback: function (items) {
                     $(items).find('li a').on('click', function(e){
