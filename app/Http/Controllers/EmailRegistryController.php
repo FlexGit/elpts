@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Session;
+use Validator;
 use Illuminate\Http\Request;
 use App\EmailRegistry;
 use App\Imports\EmailRegistryImport;
@@ -43,11 +44,15 @@ class EmailRegistryController extends Controller
 	 */
 	public function import(Request $request)
 	{
-		if ($request->hasFile('import_file')) {
-			EmailRegistry::truncate();
-			Excel::import(new EmailRegistryImport, $request->file('import_file')->getRealPath());
-			return redirect('/email-registry')->with('success', 'Файл успешно загружен!');
-		}
-		return redirect('/email-registry')->with('error', 'Файл не был загружен!');
+		$validator = Validator::make($request->all(), [
+			'import_file' => 'required|mimes:xlsx,xls|max:5120',
+		]);
+		
+		if ($validator->fails()) return redirect('/email-registry')->withErrors($validator->errors());
+		
+		EmailRegistry::truncate();
+		Excel::import(new EmailRegistryImport, $request->file('import_file')->getRealPath());
+		
+		return redirect('/email-registry')->with('success', 'Файл успешно загружен!');
 	}
 }

@@ -11,6 +11,11 @@
         				{{ Session::get('success') }}
       				</div>
      			@endif
+				@if ($errors->first('import_file'))
+					<div class="alert alert-danger">
+						<?php echo $errors->first('import_file'); ?>
+					</div>
+				@endif
    				<div class="panel-heading">
 					<h3 class="panel-title">Реестр электронных адресов</h3>
 					<div class="right">
