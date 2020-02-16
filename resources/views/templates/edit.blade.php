@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-<!--@section('breadcrumbs', Breadcrumbs::render('templates.edit', $doctype, $template))-->
+@section('breadcrumbs', Breadcrumbs::render('templates.edit', $doctype, $template))
 
 @section('content')
 	<div class="row">
@@ -171,6 +171,14 @@
 													@endswitch
 					   							</div>
 								      		@endforeach
+											@if ($k == 199)
+												<div class="form-group">
+													<fieldset class="well the-fieldset">
+														<legend class="the-legend bold">Псевдонимы наименований полей шаблона</legend>
+														<a href="/aliases/{{ $doctypes_id }}/{{ $template['id'] }}" class="btn btn-primary">Псевдонимы</a>
+													</fieldset>
+												</div>
+											@endif
 										@endif
 									</div>
 					   			@endforeach

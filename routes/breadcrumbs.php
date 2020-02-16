@@ -85,6 +85,17 @@ Breadcrumbs::for('templates.create', function ($trail, $doctype) {
     $trail->push('Новый шаблон', route('templates.create', $doctype));
 });
 
+// Aliases
+Breadcrumbs::for('aliases.index', function ($trail, $doctype, $template, $doctypes_id, $templates_id) {
+	$trail->parent('templates.edit', $doctype, $template);
+	$trail->push('Псевдонимы наименований полей шаблона', '/aliases/'.$doctypes_id.'/'.$templates_id);
+});
+
+Breadcrumbs::for('aliases.edit', function ($trail, $doctype, $template, $doctypes_id, $templates_id, $docsFieldsArr, $docs_fields_id) {
+	$trail->parent('aliases.index', $doctype, $template, $doctypes_id, $templates_id);
+	$trail->push($docsFieldsArr[$docs_fields_id], '/aliases/'.$doctypes_id.'/'.$templates_id.'/'.$docs_fields_id.'/edit');
+});
+
 // Log
 Breadcrumbs::for('log.index', function ($trail) {
     $trail->parent('main.index');

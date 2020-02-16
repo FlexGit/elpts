@@ -29,6 +29,10 @@ Route::post('/templates/{doctypes_id}', 'TemplatesController@store')->name('temp
 Route::put('/templates/{doctypes_id}/{id}', 'TemplatesController@update')->name('templates.update')->middleware('checkUser', 'checkAdmin');
 Route::delete('/templates/{doctypes_id}/{id}', 'TemplatesController@destroy')->name('templates.destroy')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 
+Route::get('/aliases/{doctypes_id}/{templates_id}', 'AliasesController@index')->name('aliases.index')->middleware('checkUser', 'checkAdmin');
+Route::get('/aliases/{doctypes_id}/{templates_id}/{docs_fields_id}/edit', 'AliasesController@edit')->name('aliases.edit')->middleware('checkUser', 'checkAdmin');
+Route::post('/aliases/{doctypes_id}/{templates_id}/{docs_fields_id}', 'AliasesController@store')->name('aliases.store')->middleware('checkUser', 'checkAdmin');
+
 Route::get('/log', 'LogController@index')->name('log.index')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 Route::post('/log', 'LogController@index')->name('log.index')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 
