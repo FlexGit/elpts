@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
         $this->call(ElptsCountriesTableSeeder::class);
         $this->call(ElptsDocsFieldsTableSeeder::class);
         $this->call(ElptsDocsFieldsRolesRightsTableSeeder::class);
@@ -28,5 +27,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ElptsStatusesTableSeeder::class);
         $this->call(ElptsTemplatesFieldsTableSeeder::class);
         $this->call(ElptsUsersTableSeeder::class);
+		$this->call(ElptsTemplatesFieldsAdd1Seeder::class);
+		$this->call(ElptsTemplatesFieldsAdd2Seeder::class);
+		$this->call(ElptsTemplatesFieldsAdd3Seeder::class);
+		$this->call(ElptsTemplatesFieldsAdd4Seeder::class);
+		$this->call(ElptsTemplatesFieldsAdd5Seeder::class);
+		$this->call(ElptsDocsFieldsAdd1Seeder::class);
+		$this->call(ElptsDocsFieldsAdd2Seeder::class);
     }
 }

@@ -31,6 +31,21 @@ class Settings extends Model
 
         return $values_arr;
     }
+    
+    public function storeStatusesNotifications($statuses, $request_arr) {
+		if (count($statuses) > 0) {
+			foreach ($statuses->all() as $status) {
+				DB::table('elpts_statuses')
+					->where('id', '=', $status->id)
+					->update(
+						[
+							'notification_email' => $request_arr['notification_email_'.$status->id],
+							'notification_text' => $request_arr['notification_text_'.$status->id]
+						]
+					);
+			}
+		}
+	}
 
     public function storeDocsFieldsRolesRights($docs_fields, $roles, $request_arr)
     {

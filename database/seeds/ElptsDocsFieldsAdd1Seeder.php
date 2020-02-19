@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ElptsDocsFieldsAdd1 extends Seeder
+class ElptsDocsFieldsAdd1Seeder extends Seeder
 {
     /**
      * Run the database seeds.

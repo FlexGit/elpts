@@ -14,12 +14,21 @@ class TemplatesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $doctypes_id
+     * @param \Illuminate\Http\Request $request
+     * @param string $doctypes_id
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request, $doctypes_id)
     {
+		if($doctypes_id == 'archive') {
+			Session::put('archive', '1');
+			$doctypes_id = 1;
+		} else {
+			Session::forget('archive');
+		}
+		
+		//\Log::Debug(Session::get('archive'));
+	
         $rows_quantity = 30;
 		if(Session::has('settings_rows_quantity'))
 		{
@@ -113,7 +122,7 @@ class TemplatesController extends Controller
 				];
 			}
 		}
-
+		
 		// Get Template Fields Values
 		$template_values_arr = $template_fields_obj->getTemplateFieldsValues($id);
 
@@ -262,6 +271,7 @@ class TemplatesController extends Controller
 		$template->doctypes_id = $doctypes_id;
 		$template->enable = $request->enable;
 		$template->enable_closed = $request->enable_closed;
+		$template->no_accept = $request->no_accept;
 		$template->save();
 		$templates_id = $template->id;
 
@@ -338,6 +348,7 @@ class TemplatesController extends Controller
 		$template->name = $request->name;
 		$template->enable = $request->enable;
 		$template->enable_closed = $request->enable_closed;
+		$template->no_accept = $request->no_accept;
 		$template->save();
 
 		// Save Template Fields Values

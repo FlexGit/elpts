@@ -26,13 +26,22 @@
 								<th>ID #</th>
 								<th>Наименование</th>
 								<th>Тип документа</th>
-								<th class="text-center">Активность</th>
+								{{--<th class="text-center">Активность</th>--}}
 								<th class="text-center">Действие</th>
 							</tr>
 						</thead>
 						<tbody>
 							@if (count($templates))
 								@foreach ($templates as $template)
+									@if (!Session::has('archive'))
+										@if (!$template->enable && !$template->enable_closed)
+											@continue
+										@endif
+									@else
+										@if ($template->enable || $template->enable_closed)
+											@continue
+										@endif
+									@endif
 									<form method="POST" action="/templates/{{ $doctypes_id }}/{{ $template->id }}?page={{ $request->page }}" onsubmit="if(confirm('Вы уверены?')) return true; else return false;">
 										{{ method_field('DELETE') }}
 										{{ csrf_field() }}
@@ -46,7 +55,7 @@
 													@endforeach
 												@endif
 											</td>
-											<td class="text-center">@if ($template->enable == 1) Да @else Нет @endif</td>
+											{{--<td class="text-center">@if ($template->enable == 1) Да @else Нет @endif</td>--}}
 											<td nowrap class="text-center">
 												<a href="/templates/{{ $doctypes_id }}/{{ $template->id }}/edit?page={{ $request->page }}" class="btn btn-default btn-sm">Изменить</a>
 												{{--<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Удалить</button>--}}

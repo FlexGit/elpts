@@ -37,6 +37,7 @@ Route::get('/log', 'LogController@index')->name('log.index')->middleware('checkU
 Route::post('/log', 'LogController@index')->name('log.index')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 
 Route::get('/settings', 'SettingsController@index')->name('settings.index')->middleware('checkUser', 'checkAdmin');
+Route::post('/settings/notifications', 'SettingsController@storeNotifications')->name('settings.storeNotifications')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 Route::post('/settings', 'SettingsController@store')->name('settings.store')->middleware('checkUser', 'checkAdmin', 'loadSettings');
 Route::get('/settings/{id}', 'SettingsController@edit')->name('settings.edit')->middleware('checkUser', 'checkAdmin');
 Route::put('/settings/{id}', 'SettingsController@update')->name('settings.update')->middleware('checkUser', 'checkAdmin', 'loadSettings');

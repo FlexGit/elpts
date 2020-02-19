@@ -26,8 +26,20 @@ class Docs extends Model
 		if($only_user_fields)
 		{
 	    	$result->where('visible', '=', '0');
+			$result->orWhere('id', '=', '20');
 	    }
 
 		return $result->get();
     }
+	
+	/**
+	 * Get Docs Statuses.
+	 */
+	public function getStatuses()
+	{
+		return DB::table('elpts_statuses')
+			->where('enable', '=', DB::raw(1))
+			->orderby('sort')
+			->get();
+	}
 }

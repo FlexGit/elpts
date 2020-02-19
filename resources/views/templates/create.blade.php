@@ -67,6 +67,16 @@
 														</label>
 													</fieldset>
 												</div>
+												<div class="form-group">
+													<fieldset class="well the-fieldset">
+														<legend class="the-legend bold">Подписание не требуется</legend>
+														<label class="fancy-checkbox">
+															<input type="hidden" name="no_accept" value="0">
+															<input type="checkbox" name="no_accept" value="1">
+															<span>Да</span>
+														</label>
+													</fieldset>
+												</div>
 												@break
 											@case (197)
 				        						@if (count($users) > 0)

@@ -22,6 +22,9 @@
 						<li>
 							<a data-toggle="tab" href="#header_rights" aria-expanded="false">Права доступа</a>
 						</li>
+						<li>
+							<a data-toggle="tab" href="#header_notifications" aria-expanded="false">Уведомления</a>
+						</li>
 					</ul>
 
 					<div class="tab-content">
@@ -64,6 +67,9 @@
 	       								</thead>
 	       								<tbody>
 	       									@foreach ($doctypes as $doctype)
+												@if ($doctype->id != 1)
+													@continue
+												@endif
 	       										@if (!count($docs_fields[$doctype->id]))
 	       											@continue
 	       										@endif
@@ -89,6 +95,38 @@
 	       							</table>
 	       						@endif
 	       						<div class="text-center">
+									<button class="btn btn-primary">Сохранить</button>
+								</div>
+							</form>
+						</div>
+						<div id="header_notifications" class="tab-pane">
+							<form method="POST" action="/settings/notifications">
+								{{ csrf_field() }}
+								@if (count($statuses))
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Статус</th>
+												<th>E-mail получателей через ";"</th>
+												<th>Текст уведомления</th>
+											</tr>
+										</thead>
+										<tbody>
+											@foreach ($statuses->all() as $status)
+												<tr class="doc_row">
+													<td>{{ $status->name }}</td>
+													<td>
+														<textarea name="notification_email_{{ $status->id }}" class="form-control">{{ $status->notification_email }}</textarea>
+													</td>
+													<td>
+														<textarea name="notification_text_{{ $status->id }}" class="form-control">{{ $status->notification_text }}</textarea>
+													</td>
+												</tr>
+											@endforeach
+										</tbody>
+									</table>
+								@endif
+								<div class="text-center">
 									<button class="btn btn-primary">Сохранить</button>
 								</div>
 							</form>

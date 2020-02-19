@@ -51,17 +51,51 @@ class SettingsController extends Controller
 
         // Get Settings
 		$settings = Settings::where('enable', 1)->orderBy('id')->get();
-
-        return view('settings.index')
+	
+		// Get Statuses
+		$statuses = $docs_obj->getStatuses();
+	
+		return view('settings.index')
         	->withSettings($settings)
         	->withDoctypes($doctypes)
         	->with('roles', $roles)
         	->with('rights', $rights)
         	->with('docs_fields', $docs_fields)
+			->with('statuses', $statuses)
         	->with('docs_fields_roles_rights', $docs_fields_roles_rights);
     }
+	
+	/**
+	 * Store Email Notifications.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function storeNotifications(Request $request)
+	{
+		// Create Docs Object
+		$docs_obj = new Docs;
 
-    public function store(Request $request)
+		// Get Statuses
+		$statuses = $docs_obj->getStatuses();
+
+		// Get Settings Object
+		$settings_obj = new Settings;
+
+		// Save Statuses Notifications
+		$settings_obj->storeStatusesNotifications($statuses, $request->all());
+
+		return redirect('/settings')
+			->with('success','Уведомления успешно сохранены!');
+	}
+	
+	/**
+	 * Store Fields Roles Rights.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
     {
 		// Create Docs Object
 		$docs_obj = new Docs;
@@ -77,7 +111,7 @@ class SettingsController extends Controller
 
 		// Get Doctypes
         $doctypes = Doctypes::where('enable', '1')->get();
-
+        
         // Get Only Doc User Fields
         if (count($doctypes) > 0)
         {
