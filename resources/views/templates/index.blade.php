@@ -12,7 +12,7 @@
       				</div>
      			@endif
    				<div class="panel-heading">
-					<h3 class="panel-title">Шаблоны "{{ $doctype->name }}"</h3>
+					<h3 class="panel-title">Шаблоны "@if (!Session::has('archive')){{ $doctype->name }}@elseАрхив Оферт@endif"</h3>
 					<div class="right">
 						<div class="col-md-6 text-right">
 							<a href="/templates/{{ $doctypes_id }}/create?page={{ $request->page }}" class="btn btn-success btn-sm"><i class="fa fa-plus-square-o"></i> Создать шаблон</a>
